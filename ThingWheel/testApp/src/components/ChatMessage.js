@@ -31,7 +31,7 @@ class ChatMessage extends React.Component{
 
     render(){
         return (
-        <div className="bubble notmax" onClick={this.maximizeBubble} left={this.left} top={this.top}>
+        <div className="bubble notmax" onClick={this.maximizeBubble} style={this.props.style} >
             <p>{this.props.text}</p>
         </div>
         )

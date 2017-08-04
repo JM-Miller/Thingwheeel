@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import ChatMessage from './ChatMessage'
 import ChatInput from './ChatInput'
-import $ from 'jquery'; 
 
 class Chat extends React.Component{
     constructor(){
@@ -9,30 +8,24 @@ class Chat extends React.Component{
         this.state = {
             data:{
                 Messages : this.GetTestMessages(),
-                wheelSize: 200,
+                wheelSize: 400,
                 bubbleSize: 200,
             }
         }
         this.GetTestMessages = this.GetTestMessages.bind(this)
         this.AddComment = this.AddComment.bind(this);
-        this.getRadialPos = this.getRadialPos.bind(this);
-        this.getRadialPos();
+        this.getRadialPosStyle = this.getRadialPosStyle.bind(this);
     }
     
 
-    getRadialPosL(i, count){
-            var step = (2*Math.PI) / this.state.data.Messages.length;
-            var angle = step * i;  
-            var x = Math.round(document.body.clientWidth/2 + radius * Math.cos(angle) - this.state.data.bubbleSize/2);
-            return x + 'px';
-    }
-
-    getRadialPosT(i, count){
+    getRadialPosStyle(i, count){
         var step = (2*Math.PI) / this.state.data.Messages.length;
         var angle = step * i;  
-        var y = Math.round(document.body.clientHeight/2 + radius * Math.sin(angle) - this.state.data.bubbleSize/2);
-        return y + 'px';
+        var x = Math.round(document.body.clientWidth/2 + (this.state.data.wheelSize / 2) * Math.cos(angle) - this.state.data.bubbleSize/2);
+        var y = Math.round(document.body.clientHeight/2 + (this.state.data.wheelSize / 2) * Math.sin(angle) - this.state.data.bubbleSize/2);
+        return {left: x + 'px', top: y + 'px'};
     }
+
     GetTestMessages(){
         return [{
             id : 1,
@@ -60,13 +53,15 @@ class Chat extends React.Component{
         var Messages = this.state.data.Messages.slice();
         Messages.push(
         {
-            id : 3,
+            id : Messages.length + 1,
             text : value,
             username : 'TestCurrentUser',
             date : Date()
         });
         this.setState({
             data:{
+                wheelSize: 200,
+                bubbleSize: 200,
                 Messages : Messages
             }});
 
@@ -77,7 +72,7 @@ class Chat extends React.Component{
     render(){
         return (
         <div className="chat" >
-            {this.state.data.Messages.map(function(msg){  return <div><ChatMessage text={msg.text} username={msg.username} date={msg.date} left={getRadialPosL(0, this.state.data.Messages.length) top={getRadialPosT(0, this.state.data.Messages.length)}/></div>})}
+            {this.state.data.Messages.map((msg) => {  return <div><ChatMessage text={msg.text} username={msg.username} date={msg.date} style={this.getRadialPosStyle(msg.id, this.state.data.Messages.length)}/></div>})}
             <ChatInput commentText="" {...this.state}  addComment={this.AddComment}/>
         </div>
         );

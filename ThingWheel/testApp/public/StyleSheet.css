@@ -47,9 +47,7 @@
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    position: relative;
-    left: 8px;
-    top: 8px;
+    position: absolute;
     overflow-y: hidden;
     background: -webkit-radial-gradient(lightblue, skyblue, skyblue); /* Safari 5.1 to 6.0 */
     background: -o-radial-gradient(lightblue, skyblue, skyblue); /* For Opera 11.6 to 12.0 */
@@ -64,8 +62,8 @@
     -moz-border-radius: 0;
     border-radius: 0;
     margin: 0px;
-    left: 0;
-    top: 0;
+    left: 0 !important;
+    top: 0 !important;
     font-size: 600%;
     overflow-y: scroll;
     background-color: skyblue !important;
