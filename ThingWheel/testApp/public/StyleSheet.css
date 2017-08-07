@@ -7,6 +7,9 @@
         width:230px;
         height:230px
     }
+    .Wheel{
+        position:absolute;
+    }
     .bubble{
         overflow-y:hidden;
         width:200px;
@@ -55,6 +58,7 @@
     background: radial-gradient(lightblue, skyblue, skyblue); /* Standard syntax */
 }
 .max {
+    z-index:1;
     width: 100vw;
     height: 100vh;
     position: absolute;

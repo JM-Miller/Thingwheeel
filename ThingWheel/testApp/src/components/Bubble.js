@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import $ from 'jquery'; 
 
-class ChatMessage extends React.Component{
+class Bubble extends React.Component{
     constructor(){
         super();
         this.state = {
@@ -38,4 +38,4 @@ class ChatMessage extends React.Component{
         }
         }
 
-export default ChatMessage;
+export default Bubble;
