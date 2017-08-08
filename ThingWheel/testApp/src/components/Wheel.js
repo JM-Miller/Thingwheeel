@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import Bubble from './Bubble'
+import CenterBubble from './CenterBubble'
 import TestBubbleInput from './TestBubbleInput'
 
 class Wheel extends React.Component{
@@ -18,8 +19,14 @@ class Wheel extends React.Component{
         this.GetTestBubbles = this.GetTestBubbles.bind(this)
         this.AddBubble = this.AddBubble.bind(this);
         this.getRadialPosStyle = this.getRadialPosStyle.bind(this);
+        this.getCenterStyle = this.getCenterStyle.bind(this);
     }
     
+    getCenterStyle(){
+        var x = Math.round(document.body.clientWidth / 2);
+        var y = Math.round(document.body.clientHeight / 2);
+        return {left: (x + this.state.data.wheelX - (this.state.data.bubbleSize / 2)) + 'px', top: (y + this.state.data.wheelY - (this.state.data.bubbleSize / 2)) + 'px'};
+    }
 
     getRadialPosStyle(i, count){
         var step = (2*Math.PI) / this.state.data.Bubbles.length;
@@ -35,20 +42,26 @@ class Wheel extends React.Component{
             text : 'Testbbl1',
             username : 'TestUser1',
             ismax : 'false',
-            date : '1/1/2017'
+            date : '1/1/2017',
+            ismax : false,
+            colorclass : "bblue",
         },{
 
             id : 2,
             text : 'Testbbl2',
             username : 'TestUser2',
             ismax : 'false',
-            date : '1/2/2017'
+            date : '1/2/2017',
+            colorclass : "bgreen",
+            ismax : false,
         },{
             id : 3,
             text : 'Testbbl3',
             username : 'TestUser1',
             ismax : 'false',
-            date : '1/4/2017'
+            date : '1/4/2017',
+            colorclass : "bred",
+            ismax : false,
         },
         ]
     }
@@ -59,15 +72,17 @@ class Wheel extends React.Component{
             id : Bubbles.length + 1,
             text : value,
             username : 'TestCurrentUser',
-            date : Date()
+            date : Date(),
+            colorclass : "bblue",
+            ismax : false,
         });
         this.setState({
             data:{
-                wheelSize: 200,
-                bubbleSize: 200,
-                wheelX: (800 * (this.props.id - 1.5)),
-                wheelY: 200,
-                wheelId: this.props.data.Wheels.length + 1,
+                wheelSize: this.state.data.wheelSize,
+                bubbleSize: this.state.data.bubbleSize,
+                wheelX: this.state.data.wheelX,
+                wheelY: this.state.data.wheelY,
+                wheelId: this.state.data.wheelId,
                 Bubbles : Bubbles
             }});
 
@@ -78,7 +93,8 @@ class Wheel extends React.Component{
     render(){
         return (
         <div className="Wheel" >
-            {this.state.data.Bubbles.map((bbl) => {  return <div><Bubble text={bbl.text} username={bbl.username} date={bbl.date} style={this.getRadialPosStyle(bbl.id, this.state.data.Bubbles.length)}/></div>})}
+            {this.state.data.Bubbles.map((bbl) => {  return <div><Bubble ismax={bbl.ismax} colorclass={bbl.colorclass} text={bbl.text} username={bbl.username} date={bbl.date} style={this.getRadialPosStyle(bbl.id, this.state.data.Bubbles.length)}/></div>})}
+            <CenterBubble style={this.getCenterStyle()}/>
             <TestBubbleInput commentText="" {...this.state}  AddBubble={this.AddBubble}/>
         </div>
         );

@@ -3,13 +3,25 @@
         font-family: 'curveFont';
         src: url('/Content/Alcubierre.otf') format("opentype");
     }
-    .bubble.notmax:hover{
+    .bubble.notcenter:hover, .bubble.center:hover, .bubble.notmax:hover{
         width:230px;
-        height:230px
+        height:230px;
+        margin-left:85px;
+        margin-top:85px;
     }
-    .Wheel{
-        position:absolute;
-    }
+.Wheel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.bubble.notcenter, .bubble.center{
+    position:absolute;
+}
+.bubble.notcenter p, .bubble.center p{
+    color:black !important;
+    font-size:100%;
+}
     .bubble{
         overflow-y:hidden;
         width:200px;
@@ -21,10 +33,6 @@
         font-family: 'curveFont';
         color:white;
         border:none;
-        background: -webkit-radial-gradient(lightblue, skyblue, skyblue); /* Safari 5.1 to 6.0 */
-        background: -o-radial-gradient(lightblue, skyblue, skyblue); /* For Opera 11.6 to 12.0 */
-        background: -moz-radial-gradient(lightblue, skyblue, skyblue); /* For Firefox 3.6 to 15 */
-        background: radial-gradient(lightblue, skyblue, skyblue); /* Standard syntax */
         -webkit-border-radius: 50%;
 	    -moz-border-radius: 50%;
 	    border-radius: 50%;
@@ -34,6 +42,36 @@
 	    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2), inset 0px 10px 30px 5px rgba(255, 255, 255, 1);
         transition:1s;
         margin:100px
+    }
+    .bblue {
+    background-color: skyblue;
+    background-image: none;
+    }
+    .bblue.notmax{
+        background: -webkit-radial-gradient(lightblue, skyblue, skyblue) !important; /* Safari 5.1 to 6.0 */
+        background: -o-radial-gradient(lightblue, skyblue, skyblue) !important; /* For Opera 11.6 to 12.0 */
+        background: -moz-radial-gradient(lightblue, skyblue, skyblue) !important; /* For Firefox 3.6 to 15 */
+        background: radial-gradient(lightblue, skyblue, skyblue) !important; /* Standard syntax */
+    }
+    .bred {
+    background-color: indianred;
+    background-image: none;
+    }
+    .bred.notmax{
+        background: -webkit-radial-gradient(firebrick, indianred, indianred) !important; /* Safari 5.1 to 6.0 */
+        background: -o-radial-gradient(firebrick, indianred, indianred) !important; /* For Opera 11.6 to 12.0 */
+        background: -moz-radial-gradient(firebrick, indianred, indianred) !important; /* For Firefox 3.6 to 15 */
+        background: radial-gradient(firebrick, indianred, indianred) !important; /* Standard syntax */
+    }
+    .bgreen {
+    background-color: lightgreen;
+    background-image: none;
+    }
+    .bgreen.notmax{
+        background: -webkit-radial-gradient(forestgreen, lightgreen, lightgreen) !important; /* Safari 5.1 to 6.0 */
+        background: -o-radial-gradient(forestgreen, lightgreen, lightgreen) !important; /* For Opera 11.6 to 12.0 */
+        background: -moz-radial-gradient(forestgreen, lightgreen, lightgreen) !important; /* For Firefox 3.6 to 15 */
+        background: radial-gradient(forestgreen, lightgreen, lightgreen) !important; /* Standard syntax */
     }
     .bubble span{
         margin-top:50px;
@@ -52,14 +90,11 @@
     border-radius: 50%;
     position: absolute;
     overflow-y: hidden;
-    background: -webkit-radial-gradient(lightblue, skyblue, skyblue); /* Safari 5.1 to 6.0 */
-    background: -o-radial-gradient(lightblue, skyblue, skyblue); /* For Opera 11.6 to 12.0 */
-    background: -moz-radial-gradient(lightblue, skyblue, skyblue); /* For Firefox 3.6 to 15 */
-    background: radial-gradient(lightblue, skyblue, skyblue); /* Standard syntax */
 }
 .max {
+    box-shadow: none;
     z-index:1;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     position: absolute;
     -webkit-border-radius: 0;
@@ -70,6 +105,4 @@
     top: 0 !important;
     font-size: 600%;
     overflow-y: scroll;
-    background-color: skyblue !important;
-    background-image: none !important;
 }
